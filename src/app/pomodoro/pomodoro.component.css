@@ -92,14 +92,38 @@ h1{
 }
 
 dialog{
-  background-color:  white;
+  background-color:  #dbdce3;
   width: 350px;
-  text-align: initial;
   border-radius: 40px;
+  border-style: none;
+  color: rgb(44, 44, 44);
+
 }
 .conf{
   font-weight: 600;
   font-size: 16px;
-  letter-spacing: 2px;
+}
+label{
   color: rgba(91, 95, 120);
+
+}
+.container-cronometros{
+  display: flex;
+  align-items: self-start;
+}
+
+.aplicar{
+  background-color: #FB6B69;
+  color: white;
+  font-weight: 300;
+  text-align: center;
+  padding: 10px 20px;
+  margin-top: 30px;
+  border-radius: 20px;
+}
+.container-conf{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

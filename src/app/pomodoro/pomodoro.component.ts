@@ -7,41 +7,44 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PomodoroComponent implements OnInit {
 
-  botaoSelecionado:string = "pomodoro";
-  tempoSelecionado:number = 0;
-  
-  async executarCronometro(){
-    this.tempoSelecionado = (this.tempo as any)[this.botaoSelecionado]['minutos'];
-    const minutos = this.tempoSelecionado
-    this.tempoSelecionado = this.tempoSelecionado*60*1000
-    console.log(this.tempoSelecionado)
-    while (this.tempoSelecionado > 0 ) {
-      console.log(this.tempoSelecionado)
-      await this.delay(1000, this.tempoSelecionado); // Aguarda 1 segundo
+  abaSelecionada:string = "pomodoro";
+  Milisegundos:number = 0;
+  iniciar:boolean = true;
 
-      console.log((this.tempo as any)[this.botaoSelecionado]);
-      this.tempoSelecionado = this.tempoSelecionado - 1000;
-    }
-    (this.tempo as any)[this.botaoSelecionado]['segundosRestantes'] = '00';
-    (this.tempo as any)[this.botaoSelecionado]['minutos'] = minutos;
-  }
-
-  delay(ms: number, tempo:number) {
-    (this.tempo as any)[this.botaoSelecionado] = this.converterSegundosParaMinutosESegundos(tempo/1000)
-    return new Promise(resolve => setTimeout(resolve, ms));
-  }
-
-  tempo:any ={
+  cronometro:any ={
     "longBreak" : {"minutos" :3, "segundosRestantes": "00"},
     "shortBreak": {"minutos" :2, "segundosRestantes": "00"},
     "pomodoro": {"minutos" :1, "segundosRestantes": "00"}
   }
-  eventoSelecionado(eventSelecionado:string){
-    this.botaoSelecionado = eventSelecionado
-    console.log(this.botaoSelecionado)
+  tempoConfigurar:any ={
+    "longBreak" :3,
+    "shortBreak":2,
+    "pomodoro":1
   }
 
 
+  async executarCronometro(){
+    this.Milisegundos = this.converterMinutosESegundosparaMili((this.cronometro as any)[this.abaSelecionada]['minutos'], Number((this.cronometro as any)[this.abaSelecionada]['segundosRestantes']))
+    this.alterarPlay()
+    while (this.Milisegundos > 0 && this.iniciar == false) {
+      await this.delay(1000, this.Milisegundos); // Aguarda 1 segundo
+      this.Milisegundos -= 1000;
+    }
+    if(!this.iniciar){
+      (this.cronometro as any)[this.abaSelecionada]['segundosRestantes'] = '00';
+      (this.cronometro as any)[this.abaSelecionada]['minutos'] = (this.tempoConfigurar as any)[this.abaSelecionada];
+    }
+    this.alterarPlay()
+  }
+
+  delay(ms: number, Milisegundos:number) {
+    (this.cronometro as any)[this.abaSelecionada] = this.converterSegundosParaMinutosESegundos(Milisegundos/1000)
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  converterMinutosESegundosparaMili(minutos:number, segundos:number){
+    return (minutos*60*1000)+(segundos*1000)
+  }
 
   converterSegundosParaMinutosESegundos(segundos:number) {
     const minutos = Math.floor(segundos / 60);
@@ -49,10 +52,32 @@ export class PomodoroComponent implements OnInit {
     return { minutos, segundosRestantes };
   }
 
+  eventoSelecionado(eventSelecionado:string){
+    this.abaSelecionada = eventSelecionado
+    console.log(this.abaSelecionada)
+  }
+
+
+
   aplicaConfiguracoes(){
+    (this.cronometro as any)['pomodoro']['minutos'] = (this.tempoConfigurar as any)['pomodoro'];
+    (this.cronometro as any)['pomodoro']['segundosRestantes'] = "00";
+
+    (this.cronometro as any)['shortBreak']['minutos'] = (this.tempoConfigurar as any)['shortBreak'];
+    (this.cronometro as any)['shortBreak']['segundosRestantes'] = "00";
+
+    (this.cronometro as any)['longBreak']['minutos'] = (this.tempoConfigurar as any)['longBreak'];
+    (this.cronometro as any)['longBreak']['segundosRestantes'] = "00";
+
+
     const modal:any = document.querySelector("dialog")
     modal.close()
+
   }
+  alterarPlay(){
+    this.iniciar = !this.iniciar
+  }
+
 
   configuracoes(){
     const modal:any = document.querySelector("dialog")
