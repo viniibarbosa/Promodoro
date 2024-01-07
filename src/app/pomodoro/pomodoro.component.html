@@ -3,8 +3,8 @@
 
   <ul class="lista-opcoes" >
     <li class="lista-elemento"><button [class.botao-elemento]="botaoSelecionado == 'pomodoro'" (click)="eventoSelecionado('pomodoro')">pomodoro</button></li>
-    <li class="lista-elemento"><button [class.botao-elemento]="botaoSelecionado == 'short break'" (click)="eventoSelecionado('short break')">short break</button></li>
-    <li class="lista-elemento"><button [class.botao-elemento]="botaoSelecionado == 'long break'" (click)="eventoSelecionado('long break')">long break</button></li>
+    <li class="lista-elemento"><button [class.botao-elemento]="botaoSelecionado == 'shortBreak'" (click)="eventoSelecionado('shortBreak')">short break</button></li>
+    <li class="lista-elemento"><button [class.botao-elemento]="botaoSelecionado == 'longBreak'" (click)="eventoSelecionado('longBreak')">long break</button></li>
   </ul>
 <div class="container-cronomoetro">
   <div class="module-border-wrap">
@@ -12,8 +12,8 @@
       <div class="a">
         <span class="infos" [ngSwitch]="botaoSelecionado">
           <h2 *ngSwitchCase="'pomodoro'">{{tempo.pomodoro.minutos}}:{{tempo.pomodoro.segundosRestantes}}</h2>
-          <h2 *ngSwitchCase="'longBreak'">{{tempo.longBreak}}</h2>
-          <h2 *ngSwitchCase="'shortBreak'">{{tempo.shortBreak}}</h2>
+          <h2 *ngSwitchCase="'longBreak'">{{tempo.longBreak.minutos}}:{{tempo.longBreak.segundosRestantes}}</h2>
+          <h2 *ngSwitchCase="'shortBreak'">{{tempo.shortBreak.minutos}}:{{tempo.shortBreak.segundosRestantes}}</h2>
           <button class="pause">PAUSE</button>
         </span>
       </div>
