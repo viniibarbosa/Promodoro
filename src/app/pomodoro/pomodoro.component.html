@@ -1,0 +1,45 @@
+<div class="container">
+  <h1>pomodoro</h1>
+
+  <ul class="lista-opcoes" >
+    <li class="lista-elemento"><button [class.botao-elemento]="botaoSelecionado == 'pomodoro'" (click)="eventoSelecionado('pomodoro')">pomodoro</button></li>
+    <li class="lista-elemento"><button [class.botao-elemento]="botaoSelecionado == 'short break'" (click)="eventoSelecionado('short break')">short break</button></li>
+    <li class="lista-elemento"><button [class.botao-elemento]="botaoSelecionado == 'long break'" (click)="eventoSelecionado('long break')">long break</button></li>
+  </ul>
+<div class="container-cronomoetro">
+  <div class="module-border-wrap">
+    <div class="cronometro">
+      <div class="a">
+        <span class="infos" [ngSwitch]="botaoSelecionado">
+          <h2 *ngSwitchCase="'pomodoro'">{{tempo.pomodoro.minutos}}:{{tempo.pomodoro.segundosRestantes}}</h2>
+          <h2 *ngSwitchCase="'longBreak'">{{tempo.longBreak}}</h2>
+          <h2 *ngSwitchCase="'shortBreak'">{{tempo.shortBreak}}</h2>
+          <button class="pause">PAUSE</button>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button (click)="executarCronometro()">Iniciar</button>
+
+<button class="engrenagem" (click)="configuracoes()">
+  <img src="../../assets/engrenagem (1).png" alt="">
+</button>
+
+
+</div>
+
+<dialog>
+  <div>
+    <h1>Configurações</h1>
+    <label class="conf" for="quantidade">Pomodoro</label>
+    <input type="number" id="quantidade" name="quantidade" min="1" max="50" [(ngModel)] = "tempo.pomodoro"><br>
+    <label class="conf"for="quantidade">Short Break</label>
+    <input type="number" id="quantidade" name="quantidade" min="1" max="50" [(ngModel)] = "tempo.shortBreak"><br>
+    <label class="conf" for="quantidade">Long Break</label>
+    <input type="number" id="quantidade" name="quantidade" min="1" max="50" [(ngModel)] = "tempo.longBreak"><br>
+
+    <button (click)="aplicaConfiguracoes()">Aplicar</button>
+  </div>
+</dialog>

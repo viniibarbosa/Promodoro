@@ -1,0 +1,105 @@
+ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #151932;
+  width: 350px;
+  height: 50px;
+  padding: 0px;
+  border-radius: 30px;
+  margin-top: 25px;
+  margin-bottom: 60px;
+}
+button{
+  font-weight: 900;
+
+}
+button{
+  background-color: transparent;
+  border-style: none;
+  color: #5B5F78;
+  cursor: pointer;
+}
+h3{
+  text-align: center;
+}
+.container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.container-cronometro {
+  margin: auto;
+  box-shadow: #FB6B69;
+}
+
+.module-border-wrap,
+.cronometro,
+.a {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.module-border-wrap {
+  background: linear-gradient(330deg, #292C54, #131734);
+  padding: 30px;
+  -webkit-box-shadow: -70px -25px 40px 10px rgba(37,42,84,1);
+  -moz-box-shadow: -70px -25px 40px 10px rgba(37,42,84,1);
+  box-shadow: -70px -25px 40px 10px rgba(37,42,84,1);
+}
+
+.cronometro {
+  background: #FB6B69;
+  padding: 10px;
+}
+.infos{
+  text-align: center;
+}
+.a {
+  background-color: #1E2140;
+}
+
+h2{
+  font-size: 64px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+.pause{
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: #5B5F78;
+}
+h1{
+  font-size: 24px;
+  text-align: center;
+}
+.botao-elemento{
+  background-color: #FB6B69;
+  padding: 12px 15px;
+  border-radius: 30px;
+  border-width: 0px;
+}
+.engrenagem{
+  margin-top: 50px;
+}
+
+dialog{
+  background-color:  white;
+  width: 350px;
+  text-align: initial;
+  border-radius: 40px;
+}
+.conf{
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: 2px;
+  color: rgba(91, 95, 120);
+}
